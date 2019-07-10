@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.codepath.myinstagram.fragment.FeedFragment;
 import com.codepath.myinstagram.fragment.PostFragment;
+import com.codepath.myinstagram.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
                         //Intent profileIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                         //startActivity(profileIntent);
 
-                        fragment = new PostFragment();
+                        fragment = new ProfileFragment();
                         break;
                     case R.id.postItem:
                         //Intent postIntent = new Intent(HomeActivity.this, PostActivity.class);
