@@ -9,19 +9,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codepath.myinstagram.PostsAdapter;
 import com.codepath.myinstagram.R;
 import com.codepath.myinstagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
 
     private RecyclerView rvFeed;
+    private PostsAdapter adapter;
+    private List<Post> mPosts;
 
     @Nullable
     @Override
@@ -32,6 +37,12 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvFeed = view.findViewById(R.id.rvFeed);
+
+        mPosts = new ArrayList<>();
+        adapter = new PostsAdapter(getContext(), mPosts);
+
+        rvFeed.setAdapter(adapter);
+        rvFeed.setLayoutManager(new LinearLayoutManager(getContext()));
 
         queryPosts();
 
@@ -48,6 +59,9 @@ public class FeedFragment extends Fragment {
                     Log.e("Query", "Error with query");
                     e.printStackTrace();
                 } else {
+                    mPosts.addAll(posts);
+                    adapter.notifyDataSetChanged();
+
                     for(int i = 0; i < posts.size(); i++) {
                         Post post = posts.get(i);
                         Log.d("Query", "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
