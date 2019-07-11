@@ -6,13 +6,18 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
+import java.util.List;
+
 @ParseClassName("Post")
-public class Post extends ParseObject {
+public class Post extends ParseObject implements Serializable {
 
     public static final String KEY_IMAGE = "image";
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_AT = "createdAt";
+    public static final String KEY_LIKES = "likes";
+    public static final String KEY_COMMENTS = "comments";
 
     public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
@@ -41,9 +46,18 @@ public class Post extends ParseObject {
     }
 
 
-    public String getCreateAt() { return getString(KEY_CREATED_AT); }
+    public List<String> getLikes() { return getList(KEY_LIKES); }
 
-    public void setCreatedAt(String createdAt) { put(KEY_CREATED_AT, createdAt); }
+    public void setLikes(List<String> users) {
+        put(KEY_LIKES, users);
+    }
+
+
+    public List<String> getComments() { return getList(KEY_COMMENTS); }
+
+    public void setComment(List<String> comments) {
+        put(KEY_COMMENTS, comments);
+    }
 
 
     public static class Query extends ParseQuery<Post> {
@@ -61,6 +75,12 @@ public class Post extends ParseObject {
             return this;
         }
 
+        public Query withCreatedAt() {
+            include("createdAt");
+            return this;
+        }
+
     }
+
 
 }

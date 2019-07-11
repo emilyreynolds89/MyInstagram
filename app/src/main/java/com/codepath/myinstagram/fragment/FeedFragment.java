@@ -81,6 +81,9 @@ public class FeedFragment extends Fragment {
     protected void queryPosts(final boolean refresh) {
         ParseQuery<Post> postQuery = new ParseQuery<Post>(Post.class);
         postQuery.include(Post.KEY_USER);
+        postQuery.include(Post.KEY_CREATED_AT);
+        postQuery.include(Post.KEY_LIKES);
+        postQuery.include(Post.KEY_COMMENTS);
         if (refresh) postQuery.setLimit(20);
         postQuery.addDescendingOrder(Post.KEY_CREATED_AT);
 
@@ -92,7 +95,6 @@ public class FeedFragment extends Fragment {
                     e.printStackTrace();
                     return;
                 }
-                if (refresh)
                 mPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
 
@@ -116,4 +118,5 @@ public class FeedFragment extends Fragment {
     public void loadNextData(int offset) {
         queryPosts(false);
     }
+
 }
