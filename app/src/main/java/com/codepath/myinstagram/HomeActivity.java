@@ -22,8 +22,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //refreshButton = findViewById(R.id.btnRefresh);
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.homeItem);
 
@@ -60,6 +58,4 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.homeItem);
     }
-
-
 }

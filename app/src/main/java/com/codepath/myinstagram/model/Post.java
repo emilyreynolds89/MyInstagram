@@ -14,7 +14,6 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_AT = "createdAt";
 
-
     public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
     }
@@ -40,6 +39,11 @@ public class Post extends ParseObject {
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
     }
+
+
+    public String getCreateAt() { return getString(KEY_CREATED_AT); }
+
+    public void setCreatedAt(String createdAt) { put(KEY_CREATED_AT, createdAt); }
 
 
     public static class Query extends ParseQuery<Post> {
