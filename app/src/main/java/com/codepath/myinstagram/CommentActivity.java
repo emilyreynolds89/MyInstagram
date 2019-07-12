@@ -15,6 +15,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.parse.ParseUser.getCurrentUser;
+
 public class CommentActivity extends AppCompatActivity {
 
     EditText etComment;
@@ -37,7 +39,7 @@ public class CommentActivity extends AppCompatActivity {
                     Toast.makeText(CommentActivity.this, "Please enter a comment", Toast.LENGTH_LONG).show();
                 } else {
                     String comment = etComment.getText().toString();
-                    comment = post.getUser().getUsername() + ": " + comment + "\n";
+                    comment = getCurrentUser().getUsername() + ": " + comment + "\n";
                     List<String> comments = post.getComments();
                     if (comments == null) {
                         comments = new ArrayList<String>();

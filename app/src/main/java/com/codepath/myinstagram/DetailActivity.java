@@ -1,5 +1,6 @@
 package com.codepath.myinstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +14,7 @@ import com.codepath.myinstagram.model.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +116,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     post.saveInBackground();
                 }
 
+                break;
+
+            case R.id.ibMessage:
+                Intent intent = new Intent(DetailActivity.this, CommentActivity.class);
+                intent.putExtra("post", (Serializable) post);
+                startActivity(intent);
                 break;
         }
     }

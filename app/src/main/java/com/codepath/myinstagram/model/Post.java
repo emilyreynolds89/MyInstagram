@@ -19,6 +19,7 @@ public class Post extends ParseObject implements Serializable {
     public static final String KEY_LIKES = "likes";
     public static final String KEY_COMMENTS = "comments";
 
+
     public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
     }
